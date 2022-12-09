@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./LoginForm.modules.scss";
+import classes from "./LoginForm.module.scss";
 import {Form, Input} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 
