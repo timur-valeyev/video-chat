@@ -1,9 +1,9 @@
-.block {
+.block_isMe {
   display: flex;
   flex-direction: column;
 }
 
-.block_isMe {
+.block {
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -33,7 +33,7 @@ img {
   //width: 100%;
 }
 
-.content {
+.content_isMe {
   max-width: 240px;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@ img {
   color: white;
 }
 
-.content_isMe {
+.content {
   max-width: 240px;
   display: flex;
   flex-direction: column;
@@ -53,6 +53,41 @@ img {
   box-shadow: rgba(0, 0, 0, 0.16) 0 10px 36px 0, rgba(0, 0, 0, 0.06) 0 0 0 1px;
   color: black;
 }
+
+.typing {
+  padding: 7px;
+  span {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: inline-block;
+    margin-right: 8px;
+    animation-name: typingAnimation;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+
+    &:nth-of-type(2) {
+      animation-duration: 0.7s;
+      color:red;
+    }
+    &:nth-of-type(3) {
+      animation-duration: 0.8s;
+    }
+  }
+}
+
+@keyframes typingAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
 
 .text {
 }

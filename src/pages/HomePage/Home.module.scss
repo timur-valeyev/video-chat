@@ -1,3 +1,46 @@
 .homeContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px 0 50px;
+}
 
+.mess {
+  height: 100%;
+  display: flex;
+
+}
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 10px 10px 10px 10px;
+}
+
+.messages {
+  flex: 1;
+}
+
+.message {
+  display: flex;
+}
+.input {
+  flex: 1;
+  margin-right: 10px;
+}
+.icons {
+  display: flex;
+  align-items: center;
+
+  > span {
+    margin-right: 10px;
+    opacity: .6;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
 }
