@@ -1,23 +1,56 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 
-const initialState = {
-    dialogs : [
-        {"id": 1, "name": "Jack", "shortText": "Hello, watsuuup..."},
-        {"id": 2, "name": "Mike", "shortText": "Call me back please..."},
-        {"id": 3, "name": "Sara", "shortText": "how are youdsdsdsdsdsdsdsdsdsdsdssdsdsd?..."},
-        {"id": 4, "name": "Dave", "shortText": "could you check email please..."}
-    ]
-}
+export const fetchDialogs = createAsyncThunk(
+    'dialogs/fetchDialogs',
+    async function(_, {rejectWithValue}) {
+        try {
+            const response = await fetch('https://jsonplaceholder.typicode.com/users')
+            if (!response.ok) {
+                throw new Error('Server Error')
+            }
+
+            const data = await response.json()
+
+            return data
+
+        } catch (err) {
+            return rejectWithValue(err.message)
+        }
+
+
+    }
+)
 
 const dialogSlice = createSlice({
     name: 'dialogs',
-    initialState,
+    initialState: {
+        dialogList: [],
+        status: null,
+        error: null
+    },
     reducers: {
-        getDialogs: (state, action) => {
-            console.log(state.dialogs)
+        // addDialog: (state, action) => {
+        //     state.dialogs.push({
+        //         id: new Date().toISOString(),
+        //         text: action.payload.text
+        //     })
+        // }
+    },
+    extraReducers: {
+        [fetchDialogs.pending]: (state) => {
+            state.status = 'loading'
+            state.error = null
+        },
+        [fetchDialogs.fulfilled]: (state, action) => {
+            state.status = 'resolved'
+            state.dialogList = action.payload
+        },
+        [fetchDialogs.rejected]: (state, action) => {
+            state.status = 'rejected'
+            state.error = action.payload
         }
     }
 })
 
-export const {getDialogs} = dialogSlice.actions
+export const {addDialogs} = dialogSlice.actions
 export default dialogSlice.reducer

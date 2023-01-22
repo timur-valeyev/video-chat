@@ -2,7 +2,6 @@ import React from 'react'
 import classes from './Home.module.scss'
 import {Input} from "antd";
 import {AudioOutlined, CameraOutlined, SendOutlined} from "@ant-design/icons";
-import {useSelector} from "react-redux";
 //components
 import Message from "../../components/Message";
 import Dialogs from "../../components/Dialogs";
@@ -10,15 +9,13 @@ import Header from "../../components/Header";
 
 
 const Home = () => {
-    const dialogs = useSelector(state => state.dialogs.dialogs)
-    console.log(dialogs)
-    console.log(dialogs)
+
     return (
         <div className={classes.homeContainer}>
             <Header/>
             <div className={classes.mess}>
                 <div className={classes.sidebar}>
-                    <Dialogs dialogData={dialogs}/>
+                    <Dialogs />
                 </div>
                 <div className={classes.content}>
                     <div className={classes.messages}>
