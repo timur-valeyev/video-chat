@@ -16,8 +16,25 @@ export const fetchDialogs = createAsyncThunk(
         } catch (err) {
             return rejectWithValue(err.message)
         }
+    }
+)
 
+export const choseDialog = createAsyncThunk(
+    'dialogs/choseDialog',
+    async function(id, {rejectWithValue}) {
+        try {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/posts?id=${id}`)
+            if (!response.ok) {
+                throw new Error('Server Error')
+            }
 
+            const data = await response.json()
+
+            return data
+
+        } catch (err) {
+            return rejectWithValue(err.message)
+        }
     }
 )
 
@@ -25,6 +42,7 @@ const dialogSlice = createSlice({
     name: 'dialogs',
     initialState: {
         dialogList: [],
+        currentDialog: [],
         status: null,
         error: null
     },
@@ -48,7 +66,19 @@ const dialogSlice = createSlice({
         [fetchDialogs.rejected]: (state, action) => {
             state.status = 'rejected'
             state.error = action.payload
-        }
+        },
+        [choseDialog.pending]: (state) => {
+            state.status = 'loading'
+            state.error = null
+        },
+        [choseDialog.fulfilled]: (state, action) => {
+            state.status = 'resolved'
+            state.currentDialog = action.payload
+        },
+        [choseDialog.rejected]: (state, action) => {
+            state.status = 'rejected'
+            state.error = action.payload
+        },
     }
 })
 

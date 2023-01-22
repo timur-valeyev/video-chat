@@ -3,7 +3,7 @@ import classes from "./Message.module.scss";
 
 //components
 
-const Message = ({avatar, text, date, isMe, isTyping}) => {
+const Message = ({title, isMe, avatar, date, isTyping}) => {
     return (
         <div className={isMe ? classes.block : classes.block_isMe}>
             <div className={classes.container}>
@@ -19,7 +19,7 @@ const Message = ({avatar, text, date, isMe, isTyping}) => {
                                 <span />
                             </div>
                         ) : (
-                            text && <p className={classes.text}>{text}</p>
+                            title && <p className={classes.text}>{title}</p>
                         )}
                     </div>
                     {date && <span className={classes.date}>{date}</span>}

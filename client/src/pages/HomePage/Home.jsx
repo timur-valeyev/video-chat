@@ -2,10 +2,11 @@ import React from 'react'
 import classes from './Home.module.scss'
 import {Input} from "antd";
 import {AudioOutlined, CameraOutlined, SendOutlined} from "@ant-design/icons";
+
 //components
-import Message from "../../components/Message";
 import Dialogs from "../../components/Dialogs";
 import Header from "../../components/Header";
+import Messages from "../../components/Messages";
 
 
 const Home = () => {
@@ -18,12 +19,7 @@ const Home = () => {
                     <Dialogs />
                 </div>
                 <div className={classes.content}>
-                    <div className={classes.messages}>
-                        <Message avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png' text='Hello'
-                                 isMe={true} date='Вчера' isReaded/>
-                        <Message avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png' text='Hello'/>
-                        <Message avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png' isTyping/>
-                    </div>
+                    <Messages />
                     <div className={classes.message}>
                         <div className={classes.input}>
                             <Input placeholder="Введите сообщение"/>

@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import classes from './Dialogs.module.scss'
 import Search from "antd/es/input/Search";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchDialogs} from "../../redux/slices/dialogSlice";
+import {choseDialog, fetchDialogs} from "../../redux/slices/dialogSlice";
 import Dialog from "../Dialog";
 
 const Dialogs = () => {
@@ -10,10 +10,13 @@ const Dialogs = () => {
     const {status, error} = useSelector(state => state.dialogs)
     const dialogList = useSelector(state => state.dialogs.dialogList)
 
-
     useEffect(() => {
         dispatch(fetchDialogs())
     }, [dispatch])
+
+    const onSelectDialog = (id) => {
+        dispatch(choseDialog(id))
+    }
 
     return (
         <div className={classes.dialogs}>
@@ -24,7 +27,7 @@ const Dialogs = () => {
             </div>
             {status === 'loading' && <h2>Loading...</h2>}
             {error && <h2>Error: {error} </h2>}
-            {dialogList.map((item) => (<Dialog key={item.id} {...item} />))}
+            {dialogList.map((item) => (<Dialog key={item.id} onSelectDialog={onSelectDialog} {...item} />))}
         </div>
     )
 }

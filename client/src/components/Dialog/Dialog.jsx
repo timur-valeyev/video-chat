@@ -2,9 +2,9 @@ import React from "react";
 import classes from './Dialog.module.scss'
 
 
-const Dialog = ({name, company }) => {
+const Dialog = ({id, name, company, onSelectDialog }) => {
     return (
-        <div className={classes.dialog}>
+        <div className={classes.dialog} onClick={() => onSelectDialog(id)}>
             <div className={classes.dialogsItem}>
                 <div className={classes.profileImage}>
                     <img src='https://www.meme-arsenal.com/memes/8a7ee66f57e5f041ce52d9fbb452f7ba.jpg' alt="avatar"/>
