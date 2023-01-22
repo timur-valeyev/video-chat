@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./LoginForm.module.scss";
 import {Form, Input} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
+import {useSelector} from "react-redux";
 
 //components
 import Button from "../../ui/Button";
@@ -11,6 +12,9 @@ const LoginForm = () => {
     const onFinish = (values) => {
         console.log('Success:', values);
     };
+    const test = useSelector(state => state.dialogs.dialogs)
+    console.log(test)
+    // console.log(useSelector(state => state.todos.todos))
     return (
         <div className={classes.container}>
             <Form

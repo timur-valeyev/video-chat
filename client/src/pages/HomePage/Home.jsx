@@ -12,32 +12,33 @@ import Header from "../../components/Header";
 const Home = () => {
     const dialogs = useSelector(state => state.dialogs.dialogs)
     console.log(dialogs)
+    console.log(dialogs)
     return (
         <div className={classes.homeContainer}>
             <Header/>
-            {/*<div className={classes.mess}>*/}
-            {/*    <div className={classes.sidebar}>*/}
-            {/*        <Dialogs dialogData={dialogData}/>*/}
-            {/*    </div>*/}
-            {/*    <div className={classes.content}>*/}
-            {/*        <div className={classes.messages}>*/}
-            {/*            <Message avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png' text='Hello'*/}
-            {/*                     isMe={true} date='Вчера' isReaded/>*/}
-            {/*            <Message avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png' text='Hello'/>*/}
-            {/*            <Message avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png' isTyping/>*/}
-            {/*        </div>*/}
-            {/*        <div className={classes.message}>*/}
-            {/*            <div className={classes.input}>*/}
-            {/*                <Input placeholder="Введите сообщение"/>*/}
-            {/*            </div>*/}
-            {/*            <div className={classes.icons}>*/}
-            {/*                <CameraOutlined/>*/}
-            {/*                <AudioOutlined/>*/}
-            {/*                <SendOutlined/>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className={classes.mess}>
+                <div className={classes.sidebar}>
+                    <Dialogs dialogData={dialogs}/>
+                </div>
+                <div className={classes.content}>
+                    <div className={classes.messages}>
+                        <Message avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png' text='Hello'
+                                 isMe={true} date='Вчера' isReaded/>
+                        <Message avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png' text='Hello'/>
+                        <Message avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png' isTyping/>
+                    </div>
+                    <div className={classes.message}>
+                        <div className={classes.input}>
+                            <Input placeholder="Введите сообщение"/>
+                        </div>
+                        <div className={classes.icons}>
+                            <CameraOutlined/>
+                            <AudioOutlined/>
+                            <SendOutlined/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,60 @@
+{
+  "dialogs": [
+    {
+      "_id": 1,
+      "text": "eqweqweqwe",
+      "created_at": "yesterday",
+      "user": {
+        "_id": 1,
+        "fullname": "Jack Sparrow",
+        "avatar": null
+      }
+    }
+  ],
+  "messages": [
+    {
+      "_id": 1,
+      "text": "eqweqweqwe",
+      "created_at": "yesterday",
+      "user": {
+        "_id": 1,
+        "fullname": "Jack Sparrow",
+        "avatar": null
+      },
+      "dialog": 1
+    },
+    {
+      "_id": 1,
+      "text": "eeeeeeeee",
+      "created_at": "yesterday",
+      "user": {
+        "_id": 1,
+        "fullname": "Jack Sparrow",
+        "avatar": null
+      },
+      "dialog": 1
+    },
+    {
+      "_id": 1,
+      "text": "sdsacscxzc",
+      "created_at": "yesterday",
+      "user": {
+        "_id": 1,
+        "fullname": "Jack Sparrow",
+        "avatar": null
+      },
+      "dialog": 1
+    },
+    {
+      "_id": 1,
+      "text": "zczxcxc",
+      "created_at": "yesterday",
+      "user": {
+        "_id": 1,
+        "fullname": "Jack Sparrow",
+        "avatar": null
+      },
+      "dialog": 1
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ec0b397c-6318-4ba4-adba-53dbb96656b3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/core/axios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/core/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/redux/slices/todoSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/utils/api/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/db.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/LoginForm/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/LoginForm/LoginForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/HomePage/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/HomePage/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/slices/slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/slices/dialogSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/api/dialogs.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/api/dialogs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dialogs/Dialogs.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dialogs/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginForm/LoginForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginForm/LoginForm.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginForm/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Message/Message.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Message/Message.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Message/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RegisterForm/RegisterForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RegisterForm/RegisterForm.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RegisterForm/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Auth/Auth.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Auth/Auth.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Auth/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Home.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/Home.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HomePage/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/NotFound/NotFound.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/NotFound/NotFound.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/NotFound/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/index.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Block/Block.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Block/Block.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Block/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Button/Button.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Button/Button.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Button/index.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/client/src/pages/HomePage/Home.jsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/components/LoginForm/LoginForm.jsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/redux/slices/todoSlice.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/App.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/pages/Auth/Auth.jsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/redux/store.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/redux/slices/dialogSlice.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KckilYSc1WPFUmnzUqk4fnqtow" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\timur\Desktop\Frontend\Проекты\Дипломный проект\video-chat\client\src\utils\api" />
+      <recent name="C:\Users\timur\Desktop\Frontend\Проекты\Дипломный проект\video-chat\client\src\redux" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\timur\Desktop\Frontend\Проекты\Дипломный проект\video-chat\server" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec0b397c-6318-4ba4-adba-53dbb96656b3" name="Changes" comment="" />
+      <created>1674281391968</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674281391968</updated>
+      <workItem from="1674281395804" duration="6803000" />
+    </task>
+    <task id="LOCAL-00001" summary="create client and server">
+      <created>1674282335786</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674282335786</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="github/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
+    <MESSAGE value="create client and server" />
+    <option name="LAST_COMMIT_MESSAGE" value="create client and server" />
+  </component>
+</project>
