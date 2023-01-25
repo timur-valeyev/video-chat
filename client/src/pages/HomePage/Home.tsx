@@ -15,9 +15,7 @@ const Home = () => {
         <div className={classes.homeContainer}>
             <Header/>
             <div className={classes.mess}>
-                <div className={classes.sidebar}>
-                    <Dialogs />
-                </div>
+                <Dialogs />
                 <div className={classes.content}>
                     <Messages />
                     <div className={classes.message}>

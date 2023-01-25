@@ -1,16 +1,6 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk, AnyAction} from "@reduxjs/toolkit";
+import {IDialog, ICurrentDialog} from "../../types/data";
 
-export interface IDialog {
-    id: number,
-    name: string,
-    company: any
-}
-
-export interface ICurrentDialog  {
-    id: number,
-    title: any,
-    body: any
-}
 
 interface DialogListState  {
     dialogList: IDialog[]
@@ -52,17 +42,6 @@ export const choseDialog = createAsyncThunk<ICurrentDialog[],  number, {rejectVa
     }
 )
 
-export const fetchMessages = createAsyncThunk<ICurrentDialog[], undefined, {rejectValue: string}>(
-    'dialogs/fetchMessages',
-    async function(_, {rejectWithValue}) {
-        const response = await fetch('https://jsonplaceholder.typicode.com/comments')
-        if (!response.ok) {
-            rejectWithValue('Server Error')
-        }
-        const data = await response.json()
-        return data
-    }
-)
 
 const dialogSlice = createSlice({
     name: 'dialogs',
@@ -85,19 +64,19 @@ const dialogSlice = createSlice({
                 state.dialogList = action.payload
                 state.loading = false
             })
-            .addCase(fetchMessages.pending, state => {
-                state.loading = true
-                state.error = null
-            })
-            .addCase(fetchMessages.fulfilled, (state, action) => {
-                state.currentDialog = action.payload
-                state.loading = false
-            })
             .addCase(choseDialog.fulfilled, (state, action) => {
                 state.currentDialog = action.payload
             })
+            .addMatcher(isError, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
     }
 })
+
+function isError(action: AnyAction) {
+    return action.type.endsWith('rejected');
+}
 
 export const {} = dialogSlice.actions
 export default dialogSlice.reducer

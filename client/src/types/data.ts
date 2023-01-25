@@ -1,9 +1,18 @@
-export interface IDialogs {
-    id: number
-    title: string
+export interface IDialog {
+    id: number,
+    name: string,
+    company: any
+}
+
+export interface ICurrentDialog  {
+    id: number,
+    title: any,
+    body: any
 }
 
 export interface IMessage {
-    id: number
-    title: string
+    avatar: string,
+    date: string,
+    isMe: boolean,
+    isTyping: boolean
 }

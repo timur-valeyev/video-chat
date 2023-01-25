@@ -1,12 +1,9 @@
 import React from "react";
 import classes from "./Message.module.scss";
+import {IMessage} from "../../types/data";
 
 
-interface MessagesProps {
-    avatar: string,
-    date: string,
-    isMe: boolean,
-    isTyping: boolean,
+interface MessagesProps extends IMessage {
     body: any,
     title: any
 }
@@ -20,7 +17,7 @@ const Message = (props: MessagesProps) => {
                 <div className={classes.avatar}>
                     <img src={avatar} alt="avatar"/>
                 </div>
-                <div className={classes.info}>
+                <div>
                     <div className={isMe ? classes.content : classes.content_isMe}>
                         {isTyping ? (
                             <div className={classes.typing}>
@@ -29,8 +26,7 @@ const Message = (props: MessagesProps) => {
                                 <span />
                             </div>
                         ) : (
-                            body && <p className={classes.text}>{body}</p>
-                            // <p>{body}</p>
+                            body && <p>{body}</p>
                         )}
                     </div>
                     {date && <span className={classes.date}>{date}</span>}
