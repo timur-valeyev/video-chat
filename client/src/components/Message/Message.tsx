@@ -1,9 +1,19 @@
 import React from "react";
 import classes from "./Message.module.scss";
 
-//components
 
-const Message = ({title, isMe, avatar, date, isTyping}) => {
+interface MessagesProps {
+    avatar: string,
+    date: string,
+    isMe: boolean,
+    isTyping: boolean,
+    body: any,
+    title: any
+}
+
+const Message = (props: MessagesProps) => {
+    const { isMe, avatar, date, isTyping, body} = props
+
     return (
         <div className={isMe ? classes.block : classes.block_isMe}>
             <div className={classes.container}>
@@ -19,7 +29,8 @@ const Message = ({title, isMe, avatar, date, isTyping}) => {
                                 <span />
                             </div>
                         ) : (
-                            title && <p className={classes.text}>{title}</p>
+                            body && <p className={classes.text}>{body}</p>
+                            // <p>{body}</p>
                         )}
                     </div>
                     {date && <span className={classes.date}>{date}</span>}

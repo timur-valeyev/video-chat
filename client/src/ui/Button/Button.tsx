@@ -3,10 +3,9 @@ import { Button as BaseButton } from 'antd'
 
 import './Button.module.scss'
 
-const Button = (props) => {
+const Button = () => {
     return (
         <BaseButton
-            {...props}
         />
     )
 }

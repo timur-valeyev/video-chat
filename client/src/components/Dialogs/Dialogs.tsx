@@ -1,20 +1,21 @@
 import React, {useEffect} from "react";
 import classes from './Dialogs.module.scss'
 import Search from "antd/es/input/Search";
-import {useDispatch, useSelector} from "react-redux";
-import {choseDialog, fetchDialogs} from "../../redux/slices/dialogSlice";
+import {fetchDialogs, choseDialog} from "../../redux/slices/dialogSlice";
 import Dialog from "../Dialog";
+import {useAppDispatch, useAppSelector} from "../../hook";
+
 
 const Dialogs = () => {
-    const dispatch = useDispatch()
-    const {status, error} = useSelector(state => state.dialogs)
-    const dialogList = useSelector(state => state.dialogs.dialogList)
+    const dispatch = useAppDispatch()
+    const {loading, error} = useAppSelector(state => state.dialogs)
+    const dialogList = useAppSelector(state => state.dialogs.dialogList)
 
     useEffect(() => {
         dispatch(fetchDialogs())
     }, [dispatch])
 
-    const onSelectDialog = (id) => {
+    const onSelectDialog = (id: number) => {
         dispatch(choseDialog(id))
     }
 
@@ -25,7 +26,7 @@ const Dialogs = () => {
                     placeholder="Поиск среди контактов"
                 />
             </div>
-            {status === 'loading' && <h2>Loading...</h2>}
+            {loading && <h2>Loading...</h2>}
             {error && <h2>Error: {error} </h2>}
             {dialogList.map((item) => (<Dialog key={item.id} onSelectDialog={onSelectDialog} {...item} />))}
         </div>

@@ -38,9 +38,9 @@ const tailFormItemLayout = {
 
 const RegisterForm = () => {
     const [form] = Form.useForm();
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-    };
+    // const onFinish = (values) => {
+    //     console.log('Received values of form: ', values);
+    // };
 
     return (
         <div className={classes.container}>
@@ -48,7 +48,7 @@ const RegisterForm = () => {
                 {...formItemLayout}
                 form={form}
                 name="register"
-                onFinish={onFinish}
+                // onFinish={onFinish}
                 initialValues={{
                     residence: ['zhejiang', 'hangzhou', 'xihu'],
                     prefix: '86',
@@ -217,7 +217,7 @@ const RegisterForm = () => {
                 </Form.Item>
 
                 <Form.Item {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">Зарегистрироваться</Button>
+                    {/*<Button type="primary" htmlType="submit">Зарегистрироваться</Button>*/}
                 </Form.Item>
                 <Form.Item>
                     Назад

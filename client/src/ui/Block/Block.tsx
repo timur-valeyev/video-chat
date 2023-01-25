@@ -1,10 +1,9 @@
 import React from 'react'
 import classes from './Block.module.scss'
 
-const Block = ({children}) => {
+const Block = () => {
     return (
         <div className={classes.container}>
-            {children}
         </div>
     )
 }

@@ -2,19 +2,15 @@ import React from "react";
 import classes from "./LoginForm.module.scss";
 import {Form, Input} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import {useSelector} from "react-redux";
 
 //components
 import Button from "../../ui/Button";
 
 
 const LoginForm = () => {
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-    const test = useSelector(state => state.dialogs.dialogs)
-    console.log(test)
-    // console.log(useSelector(state => state.todos.todos))
+    // const onFinish = (values) => {
+    //     console.log('Success:', values);
+    // };
     return (
         <div className={classes.container}>
             <Form
@@ -23,7 +19,7 @@ const LoginForm = () => {
                 initialValues={{
                     remember: true,
                 }}
-                onFinish={onFinish}
+                // onFinish={onFinish}
             >
                 <Form.Item
                     name="username"
@@ -53,9 +49,9 @@ const LoginForm = () => {
                 </Form.Item>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Войти
-                    </Button>
+                    {/*<Button type="primary" htmlType="submit">*/}
+                    {/*    Войти*/}
+                    {/*</Button>*/}
                 </Form.Item>
                 {/*<Form.Item>*/}
                 {/*    <Link href="">Зарегистрироваться</Link>*/}
