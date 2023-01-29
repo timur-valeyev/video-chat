@@ -1,19 +1,21 @@
 export interface IDialog {
     id: number,
-    name: string,
-    company: any
+    text: string,
+    user: any,
 }
 
 export interface ICurrentDialog  {
     id: number,
     name: string,
-    body: string,
-    email: string
+    text: string,
+    user: any
 }
 
 export interface IMessage {
     avatar: string,
     date: string,
     isMe: boolean,
-    isTyping: boolean
+    isTyping: boolean,
+    text: string,
+    user: any
 }

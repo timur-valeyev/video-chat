@@ -8,8 +8,7 @@ interface DialogProps extends IDialog{
 }
 
 const Dialog: React.FC <DialogProps> = (props) => {
-    const {id, name, company, onSelectDialog} = props
-
+    const {id, user, text, onSelectDialog} = props
 
     return (
         <div className={classes.dialog}  onClick={() => onSelectDialog(id)}>
@@ -18,8 +17,8 @@ const Dialog: React.FC <DialogProps> = (props) => {
                     <img src='https://www.meme-arsenal.com/memes/8a7ee66f57e5f041ce52d9fbb452f7ba.jpg' alt="avatar"/>
                 </div>
                 <div>
-                    <p className={classes.name}>{name}</p>
-                    <p className={classes.shortText}>{company.bs}</p>
+                    <p className={classes.name}>{user.fullname}</p>
+                    <p className={classes.shortText}>{text}</p>
                 </div>
             </div>
             <div>

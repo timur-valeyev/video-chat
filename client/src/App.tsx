@@ -1,18 +1,15 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 //components
 import Auth from "./pages/Auth";
 
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <Auth />
-            </div>
-        )
-    }
-
+const App: React.FC = () => {
+    return (
+        <div className="App">
+            <Auth />
+        </div>
+    )
 }
 
 export default App

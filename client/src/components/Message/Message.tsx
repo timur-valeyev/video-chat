@@ -5,12 +5,12 @@ import {IMessage} from "../../types/data";
 
 interface MessagesProps extends IMessage {
     name: string,
-    body: string,
-    email: string
+    text: string,
+    user: any
 }
 
 const Message = (props: MessagesProps) => {
-    const { isMe, avatar, date, isTyping, email, body} = props
+    const { isMe, avatar, date, isTyping, text, user} = props
 
     return (
         <div className={isMe ? classes.block : classes.block_isMe}>
@@ -27,10 +27,10 @@ const Message = (props: MessagesProps) => {
                                 <span />
                             </div>
                         ) : (
-                            body &&
+                            text &&
                                 <>
-                                    <p>{email}</p>
-                                    <p>{body}</p>
+                                    <p>{user.fullname}</p>
+                                    <p>{text}</p>
                                 </>
                         )}
                     </div>

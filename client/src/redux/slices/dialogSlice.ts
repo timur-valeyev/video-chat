@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk, AnyAction} from "@reduxjs/toolkit";
-import axios from 'axios'
 import {IDialog, ICurrentDialog} from "../../types/data";
+import dialogsAPI from "../../utils/api/dialogsAPI";
 
 
 interface DialogListState  {
@@ -21,20 +21,22 @@ export const fetchDialogs = createAsyncThunk<IDialog[]>(
     'dialogs/fetchDialogs',
         async (_, thunkAPI) => {
             try {
-                const response = await axios.get('https://jsonplaceholder.typicode.com/users')
-                return response.data
+                return await dialogsAPI.getAllDialogs().then(response => {
+                    return response.data
+                })
             } catch (err) {
                 return  thunkAPI.rejectWithValue(err)
             }
         }
 )
 
-export const choseDialog = createAsyncThunk<ICurrentDialog[],  number>(
+export const choseDialog = createAsyncThunk<ICurrentDialog[], number>(
     'dialogs/choseDialog',
     async (id, thunkAPI) => {
         try {
-            const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?id=${id}`)
-            return response.data
+            return await dialogsAPI.getCurrentDialog(id).then(response => {
+                return response.data
+            })
         } catch (err) {
             return thunkAPI.rejectWithValue(err)
         }

@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk, AnyAction} from "@reduxjs/toolkit";
-import axios from 'axios'
 import {ICurrentDialog} from "../../types/data";
+import messagesAPI from "../../utils/api/messagesAPI";
 
 interface MessagesListState {
     currentDialog: ICurrentDialog[]
@@ -18,8 +18,10 @@ export const fetchMessages = createAsyncThunk<ICurrentDialog[], number>(
     'messages/fetchMessages',
     async (id, thunkAPI) => {
         try {
-            const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?id=${id}`)
-            return response.data
+            return await messagesAPI.getAllMessages(id).then(response => {
+                return response.data
+            })
+
         } catch (err) {
             return thunkAPI.rejectWithValue(err)
         }
@@ -30,21 +32,10 @@ export const addMessage = createAsyncThunk<ICurrentDialog, string>(
     'messages/addMessage',
     async (text, thunkAPI) => {
         try {
-            const message = {
-                id: 1,
-                name: 'user',
-                email: 'user',
-                body: text,
-            }
-            const response = await axios({
-                method: 'post',
-                url: 'https://jsonplaceholder.typicode.com/comments',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: message
+            return await messagesAPI.addMessage(text).then(response => {
+                return response.data
             })
-            return response.data
+
         } catch (err) {
             return thunkAPI.rejectWithValue(err)
         }
