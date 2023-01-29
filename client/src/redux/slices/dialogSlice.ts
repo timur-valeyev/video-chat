@@ -62,6 +62,7 @@ const dialogSlice = createSlice({
                 state.error = null
             })
             .addCase(choseDialog.fulfilled, (state, action) => {
+                state.loading = false
                 state.currentDialog = action.payload
             })
             .addMatcher(isError, (state, action) => {

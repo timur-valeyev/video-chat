@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import classes from './Home.module.scss'
 import {Input} from "antd";
 import {AudioOutlined, CameraOutlined, SendOutlined} from "@ant-design/icons";
@@ -14,9 +14,19 @@ import {addMessage} from "../../redux/slices/messagesSlice";
 const Home = () => {
     const [text, setText] = useState('')
     const dispatch = useAppDispatch()
+    const inputRef = useRef<any>(null)
+
+    useEffect(() => {
+        if (inputRef.current) inputRef.current.focus()
+    }, [])
 
     const sendMessage = () => {
         dispatch(addMessage(text))
+        setText('')
+    }
+
+    const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
+        if (event.key === 'Enter') sendMessage()
     }
 
     return (
@@ -29,9 +39,11 @@ const Home = () => {
                     <div className={classes.message}>
                         <div className={classes.input}>
                             <Input
+                                ref={inputRef}
                                 value={text}
                                 placeholder="Введите сообщение"
-                                onChange={(e) => setText(e.target.value)}
+                                onChange={(event) => setText(event.target.value)}
+                                onKeyDown={handleKeyDown}
                             />
                         </div>
                         <div className={classes.icons}>
