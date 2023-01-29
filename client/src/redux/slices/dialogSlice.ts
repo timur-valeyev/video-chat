@@ -1,4 +1,5 @@
 import {createSlice, createAsyncThunk, AnyAction} from "@reduxjs/toolkit";
+import axios from 'axios'
 import {IDialog, ICurrentDialog} from "../../types/data";
 
 
@@ -16,29 +17,27 @@ const initialState: DialogListState = {
     error: null
 }
 
-export const fetchDialogs = createAsyncThunk<IDialog[], undefined, {rejectValue: string}>(
+export const fetchDialogs = createAsyncThunk<IDialog[]>(
     'dialogs/fetchDialogs',
-    async function(_, {rejectWithValue}) {
-            const response = await fetch('https://jsonplaceholder.typicode.com/users')
-            if (!response.ok) {
-                rejectWithValue('Server Error')
+        async (_, thunkAPI) => {
+            try {
+                const response = await axios.get('https://jsonplaceholder.typicode.com/users')
+                return response.data
+            } catch (err) {
+                return  thunkAPI.rejectWithValue(err)
             }
-            const data = await response.json()
-            return data
-    }
+        }
 )
 
-export const choseDialog = createAsyncThunk<ICurrentDialog[],  number, {rejectValue: string}>(
+export const choseDialog = createAsyncThunk<ICurrentDialog[],  number>(
     'dialogs/choseDialog',
-    async function(id, {rejectWithValue}) {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/comments?id=${id}`)
-
-            if (!response.ok) {
-                return rejectWithValue('Server Error')
-            }
-
-            const data = await response.clone().json()
-            return data
+    async (id, thunkAPI) => {
+        try {
+            const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?id=${id}`)
+            return response.data
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err)
+        }
     }
 )
 

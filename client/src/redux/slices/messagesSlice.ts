@@ -1,4 +1,5 @@
 import {createSlice, createAsyncThunk, AnyAction} from "@reduxjs/toolkit";
+import axios from 'axios'
 import {ICurrentDialog} from "../../types/data";
 
 interface MessagesListState {
@@ -13,50 +14,47 @@ const initialState: MessagesListState = {
     error: null
 }
 
-export const fetchMessages = createAsyncThunk<ICurrentDialog[], number, {rejectValue: string}>(
+export const fetchMessages = createAsyncThunk<ICurrentDialog[], number>(
     'messages/fetchMessages',
-    async function(id, {rejectWithValue}) {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/comments?id=${id}`)
-        if (!response.ok) {
-            rejectWithValue('Server Error')
+    async (id, thunkAPI) => {
+        try {
+            const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?id=${id}`)
+            return response.data
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err)
         }
-        const data = await response.json()
-        return data
     }
 )
 
-
-export const addMessage = createAsyncThunk<ICurrentDialog, string, {rejectValue: string}>(
+export const addMessage = createAsyncThunk<ICurrentDialog, string>(
     'messages/addMessage',
-    async function (text,{rejectWithValue}){
-        console.log('text slice ', text)
-        const message = {
-            id: 1,
-            name: 'user',
-            email: 'user',
-            body: text,
+    async (text, thunkAPI) => {
+        try {
+            const message = {
+                id: 1,
+                name: 'user',
+                email: 'user',
+                body: text,
+            }
+            const response = await axios({
+                method: 'post',
+                url: 'https://jsonplaceholder.typicode.com/comments',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: message
+            })
+            return response.data
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err)
         }
-        const response = await fetch('https://jsonplaceholder.typicode.com/comments', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(message)
-        });
-
-        if(!response.ok) {
-            return rejectWithValue('Error')
-        }
-        return (await response.clone().json()) as ICurrentDialog
     }
 )
 
 const messagesSlice = createSlice({
     name: 'messages',
     initialState,
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchMessages.pending, state => {
