@@ -4,6 +4,7 @@ import Search from "antd/es/input/Search";
 import {fetchDialogs, choseDialog} from "../../redux/slices/dialogSlice";
 import Dialog from "../Dialog";
 import {useAppDispatch, useAppSelector} from "../../hook";
+import {fetchMessages} from "../../redux/slices/messagesSlice";
 
 
 const Dialogs = () => {
@@ -15,8 +16,10 @@ const Dialogs = () => {
         dispatch(fetchDialogs())
     }, [dispatch])
 
+
     const onSelectDialog = (id: number) => {
         dispatch(choseDialog(id))
+        dispatch(fetchMessages(id))
     }
 
     return (

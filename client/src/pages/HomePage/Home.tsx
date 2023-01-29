@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import classes from './Home.module.scss'
 import {Input} from "antd";
 import {AudioOutlined, CameraOutlined, SendOutlined} from "@ant-design/icons";
@@ -7,9 +7,17 @@ import {AudioOutlined, CameraOutlined, SendOutlined} from "@ant-design/icons";
 import Dialogs from "../../components/Dialogs";
 import Header from "../../components/Header";
 import Messages from "../../components/Messages";
+import {useAppDispatch} from "../../hook";
+import {addMessage} from "../../redux/slices/messagesSlice";
 
 
 const Home = () => {
+    const [text, setText] = useState('')
+    const dispatch = useAppDispatch()
+
+    const sendMessage = () => {
+        dispatch(addMessage(text))
+    }
 
     return (
         <div className={classes.homeContainer}>
@@ -20,12 +28,16 @@ const Home = () => {
                     <Messages />
                     <div className={classes.message}>
                         <div className={classes.input}>
-                            <Input placeholder="Введите сообщение"/>
+                            <Input
+                                value={text}
+                                placeholder="Введите сообщение"
+                                onChange={(e) => setText(e.target.value)}
+                            />
                         </div>
                         <div className={classes.icons}>
                             <CameraOutlined/>
                             <AudioOutlined/>
-                            <SendOutlined/>
+                            <SendOutlined onClick={sendMessage}/>
                         </div>
                     </div>
                 </div>

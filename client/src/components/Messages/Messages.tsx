@@ -1,10 +1,10 @@
 import React from "react";
 import Message from "../Message";
-import { useAppSelector} from "../../hook";
+import {useAppSelector} from "../../hook";
 
 
 const Messages = () => {
-    const messages = useAppSelector(state => state.dialogs.currentDialog)
+    const messages = useAppSelector(state => state.messages.currentDialog)
 
     return (
         <>
@@ -16,7 +16,8 @@ const Messages = () => {
                     isMe
                     isTyping={false}
                     {...message}
-                />)}
+                />
+            )}
         </>
     )
 }

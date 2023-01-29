@@ -4,7 +4,7 @@ import {IDialog} from "../../types/data";
 
 
 interface DialogProps extends IDialog{
-    onSelectDialog: any
+    onSelectDialog: (id: number) => void
 }
 
 const Dialog: React.FC <DialogProps> = (props) => {

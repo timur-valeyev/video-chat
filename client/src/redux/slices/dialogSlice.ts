@@ -37,7 +37,7 @@ export const choseDialog = createAsyncThunk<ICurrentDialog[],  number, {rejectVa
                 return rejectWithValue('Server Error')
             }
 
-            const data = await response.json()
+            const data = await response.clone().json()
             return data
     }
 )
@@ -46,14 +46,7 @@ export const choseDialog = createAsyncThunk<ICurrentDialog[],  number, {rejectVa
 const dialogSlice = createSlice({
     name: 'dialogs',
     initialState,
-    reducers: {
-        // addDialog: (state, action: PayloadAction<string>) => {
-        //     state.dialogList.push({
-        //         id: new Date().toISOString(),
-        //         text: action.payload
-        //     })
-        // }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchDialogs.pending, (state) => {
@@ -63,6 +56,10 @@ const dialogSlice = createSlice({
             .addCase(fetchDialogs.fulfilled, (state, action) => {
                 state.dialogList = action.payload
                 state.loading = false
+            })
+            .addCase(choseDialog.pending, (state) => {
+                state.loading = true
+                state.error = null
             })
             .addCase(choseDialog.fulfilled, (state, action) => {
                 state.currentDialog = action.payload

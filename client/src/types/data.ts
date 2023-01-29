@@ -6,8 +6,9 @@ export interface IDialog {
 
 export interface ICurrentDialog  {
     id: number,
-    title: any,
-    body: any
+    name: string,
+    body: string,
+    email: string
 }
 
 export interface IMessage {

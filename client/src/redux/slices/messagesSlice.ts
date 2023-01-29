@@ -1,35 +1,22 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk, AnyAction} from "@reduxjs/toolkit";
+import {ICurrentDialog} from "../../types/data";
 
-export interface IDialog {
-    id: number,
-    name: string,
-    company: any
-}
-
-export interface ICurrentDialog  {
-    id: number,
-    title: any,
-    body: any
-}
-
-interface DialogListState  {
-    dialogList: IDialog[]
+interface MessagesListState {
     currentDialog: ICurrentDialog[]
     loading: boolean
     error: string | null
 }
 
-const initialState: DialogListState = {
-    dialogList: [],
+const initialState: MessagesListState = {
     currentDialog: [],
     loading: false,
     error: null
 }
 
-export const fetchMessages = createAsyncThunk<ICurrentDialog[], undefined, {rejectValue: string}>(
-    'dialogs/fetchMessages',
-    async function(_, {rejectWithValue}) {
-        const response = await fetch('https://jsonplaceholder.typicode.com/comments')
+export const fetchMessages = createAsyncThunk<ICurrentDialog[], number, {rejectValue: string}>(
+    'messages/fetchMessages',
+    async function(id, {rejectWithValue}) {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/comments?id=${id}`)
         if (!response.ok) {
             rejectWithValue('Server Error')
         }
@@ -38,8 +25,34 @@ export const fetchMessages = createAsyncThunk<ICurrentDialog[], undefined, {reje
     }
 )
 
+
+export const addMessage = createAsyncThunk<ICurrentDialog, string, {rejectValue: string}>(
+    'messages/addMessage',
+    async function (text,{rejectWithValue}){
+        console.log('text slice ', text)
+        const message = {
+            id: 1,
+            name: 'user',
+            email: 'user',
+            body: text,
+        }
+        const response = await fetch('https://jsonplaceholder.typicode.com/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(message)
+        });
+
+        if(!response.ok) {
+            return rejectWithValue('Error')
+        }
+        return (await response.clone().json()) as ICurrentDialog
+    }
+)
+
 const messagesSlice = createSlice({
-    name: 'dialogs',
+    name: 'messages',
     initialState,
     reducers: {
 
@@ -54,9 +67,21 @@ const messagesSlice = createSlice({
                 state.currentDialog = action.payload
                 state.loading = false
             })
-
+            .addCase(addMessage.pending, (state) => {
+                state.error = null
+            })
+            .addCase(addMessage.fulfilled, (state, action) => {
+                state.currentDialog.push(action.payload);
+            })
+            .addMatcher(isError, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
     }
 })
 
-export const {} = messagesSlice.actions
+function isError(action: AnyAction) {
+    return action.type.endsWith('rejected');
+}
+
 export default messagesSlice.reducer
