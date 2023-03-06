@@ -1,33 +1,31 @@
-import React from 'react';
-import {Button, Form, Input, Select,} from 'antd';
+import React from 'react'
+import { Button, Form, Input, Select } from 'antd'
+import { useNavigate } from 'react-router-dom'
 import classes from './RegisterForm.module.scss'
-import {useNavigate} from "react-router-dom";
 
-const {Option} = Select;
+const { Option } = Select
 const formItemLayout = {
     labelCol: {
         xs: {
-            span: 24,
+            span: 24
         },
         sm: {
-            span: 8,
-        },
+            span: 8
+        }
     },
     wrapperCol: {
         xs: {
-            span: 24,
+            span: 24
         },
         sm: {
-            span: 16,
-        },
-    },
-};
-
+            span: 16
+        }
+    }
+}
 
 const RegisterForm = () => {
-    const [form] = Form.useForm();
+    const [form] = Form.useForm()
     const navigate = useNavigate()
-
     const goBack = () => navigate(-1)
 
     return (
@@ -35,176 +33,184 @@ const RegisterForm = () => {
             <Form
                 {...formItemLayout}
                 form={form}
-                name="register"
+                name='register'
                 scrollToFirstError
             >
                 <Form.Item
-                    name="surname"
-                    label="Фамилия"
+                    name='surname'
+                    label='Фамилия'
                     rules={[
                         {
                             required: true,
                             message: 'Пожалуйста, введите фамилию!',
-                            whitespace: true,
-                        },
+                            whitespace: true
+                        }
                     ]}
                 >
-                    <Input/>
+                    <Input />
                 </Form.Item>
 
                 <Form.Item
-                    name="firstname"
-                    label="Имя"
+                    name='firstname'
+                    label='Имя'
                     rules={[
                         {
                             required: true,
                             message: 'Пожалуйста, введите имя!',
-                            whitespace: true,
-                        },
+                            whitespace: true
+                        }
                     ]}
                 >
-                    <Input/>
+                    <Input />
                 </Form.Item>
 
                 <Form.Item
-                    name="lastname"
-                    label="Отчество"
+                    name='lastname'
+                    label='Отчество'
                     rules={[
                         {
                             required: true,
                             message: 'Пожалуйста, введите очество!',
-                            whitespace: true,
-                        },
+                            whitespace: true
+                        }
                     ]}
                 >
-                    <Input/>
+                    <Input />
                 </Form.Item>
 
                 <Form.Item
-                    name="role"
-                    label="Роль"
+                    name='role'
+                    label='Роль'
                     rules={[
                         {
                             required: true,
-                            message: 'Пожалуйста, выберите роль!',
-                        },
+                            message: 'Пожалуйста, выберите роль!'
+                        }
                     ]}
                 >
-                    <Select placeholder="Выберите роль">
-                        <Option value="teacher">Преподаватель</Option>
-                        <Option value="student">Студент</Option>
+                    <Select placeholder='Выберите роль'>
+                        <Option value='teacher'>Преподаватель</Option>
+                        <Option value='student'>Студент</Option>
                     </Select>
                 </Form.Item>
 
                 <Form.Item
-                    name="role"
-                    label="Кафедра"
+                    name='role'
+                    label='Кафедра'
                     rules={[
                         {
                             required: true,
-                            message: 'Пожалуйста, выберите кафедру!',
-                        },
+                            message: 'Пожалуйста, выберите кафедру!'
+                        }
                     ]}
                 >
-                    <Select placeholder="Выберите кафедру">
-                        <Option value="0">Информатика и вычислительная техника</Option>
-                        <Option value="1">Экономика</Option>
+                    <Select placeholder='Выберите кафедру'>
+                        <Option value='0'>
+                            Информатика и вычислительная техника
+                        </Option>
+                        <Option value='1'>Экономика</Option>
                     </Select>
                 </Form.Item>
 
                 <Form.Item
-                    name="role"
-                    label="Группа"
+                    name='role'
+                    label='Группа'
                     rules={[
                         {
                             required: true,
-                            message: 'Пожалуйста, выберите группу!',
-                        },
+                            message: 'Пожалуйста, выберите группу!'
+                        }
                     ]}
                 >
-                    <Select placeholder="Выберите группу">
-                        <Option value="0">ИВТ-2022</Option>
-                        <Option value="1">Э-10-02</Option>
+                    <Select placeholder='Выберите группу'>
+                        <Option value='0'>ИВТ-2022</Option>
+                        <Option value='1'>Э-10-02</Option>
                     </Select>
                 </Form.Item>
 
                 <Form.Item
-                    name="email"
-                    label="E-mail"
+                    name='email'
+                    label='E-mail'
                     rules={[
                         {
                             type: 'email',
-                            message: 'Введите корректный e-mail адрес!',
+                            message: 'Введите корректный e-mail адрес!'
                         },
                         {
                             required: true,
-                            message: 'Пожалуйста, введите e-mail! адрес!',
-                        },
+                            message: 'Пожалуйста, введите e-mail! адрес!'
+                        }
                     ]}
                 >
-                    <Input/>
+                    <Input />
                 </Form.Item>
 
                 <Form.Item
-                    name="password"
-                    label="Пароль"
+                    name='password'
+                    label='Пароль'
                     rules={[
                         {
                             required: true,
-                            message: 'Пожалуйста, введите пароль!',
-                        },
+                            message: 'Пожалуйста, введите пароль!'
+                        }
                     ]}
                     hasFeedback
                 >
-                    <Input.Password/>
+                    <Input.Password />
                 </Form.Item>
 
                 <Form.Item
-                    name="confirm"
-                    label="Подтвердить пароль"
+                    name='confirm'
+                    label='Подтвердить пароль'
                     dependencies={['password']}
                     hasFeedback
                     rules={[
                         {
                             required: true,
-                            message: 'Пожалуйста, введите пароль!',
+                            message: 'Пожалуйста, введите пароль!'
                         },
-                        ({getFieldValue}) => ({
+                        ({ getFieldValue }) => ({
                             validator(_, value) {
-                                if (!value || getFieldValue('password') === value) {
-                                    return Promise.resolve();
+                                if (
+                                    !value ||
+                                    getFieldValue('password') === value
+                                ) {
+                                    return Promise.resolve()
                                 }
-                                return Promise.reject(new Error('Пароли не совпадают!'));
-                            },
-                        }),
+                                return Promise.reject(
+                                    new Error('Пароли не совпадают!')
+                                )
+                            }
+                        })
                     ]}
                 >
-                    <Input.Password/>
+                    <Input.Password />
                 </Form.Item>
                 <Form.Item
-                    name="phone"
-                    label="Номер телефона"
+                    name='phone'
+                    label='Номер телефона'
                     rules={[
                         {
                             required: true,
-                            message: 'Пожалуйста, введите номер телефона!',
-                        },
+                            message: 'Пожалуйста, введите номер телефона!'
+                        }
                     ]}
                 >
                     <Input
                         style={{
-                            width: '100%',
+                            width: '100%'
                         }}
                     />
                 </Form.Item>
 
                 <div className={classes.registerButtons}>
-                    <Button type="primary" htmlType="submit">Зарегистрироваться</Button>
+                    <Button type='primary' htmlType='submit'>
+                        Зарегистрироваться
+                    </Button>
                     <Button onClick={goBack}>Отмена</Button>
                 </div>
             </Form>
         </div>
-
-    );
-};
-export default RegisterForm;
+    )
+}
+export default RegisterForm

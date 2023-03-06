@@ -1,12 +1,11 @@
 import React from 'react'
 
 //components
-import Auth from "./pages/Auth";
-
+import Auth from './pages/Auth'
 
 const App: React.FC = () => {
     return (
-        <div className="App">
+        <div className='App'>
             <Auth />
         </div>
     )

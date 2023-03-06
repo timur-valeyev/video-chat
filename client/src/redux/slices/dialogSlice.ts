@@ -1,9 +1,8 @@
-import {createSlice, createAsyncThunk, AnyAction} from "@reduxjs/toolkit";
-import {IDialog, ICurrentDialog} from "../../types/data";
-import dialogsAPI from "../../utils/api/dialogsAPI";
+import { createSlice, createAsyncThunk, AnyAction } from '@reduxjs/toolkit'
+import { IDialog, ICurrentDialog } from '../../types/data'
+import { dialogsAPI } from '../../utils/api/dialogsAPI'
 
-
-interface DialogListState  {
+interface DialogListState {
     dialogList: IDialog[]
     currentDialog: ICurrentDialog[]
     loading: boolean
@@ -19,22 +18,9 @@ const initialState: DialogListState = {
 
 export const fetchDialogs = createAsyncThunk<IDialog[]>(
     'dialogs/fetchDialogs',
-        async (_, thunkAPI) => {
-            try {
-                return await dialogsAPI.getAllDialogs().then(response => {
-                    return response.data
-                })
-            } catch (err) {
-                return  thunkAPI.rejectWithValue(err)
-            }
-        }
-)
-
-export const choseDialog = createAsyncThunk<ICurrentDialog[], number>(
-    'dialogs/choseDialog',
-    async (id, thunkAPI) => {
+    async (_, thunkAPI) => {
         try {
-            return await dialogsAPI.getCurrentDialog(id).then(response => {
+            return await dialogsAPI.getAllDialogs().then((response) => {
                 return response.data
             })
         } catch (err) {
@@ -43,6 +29,18 @@ export const choseDialog = createAsyncThunk<ICurrentDialog[], number>(
     }
 )
 
+export const choseDialog = createAsyncThunk<ICurrentDialog[], number>(
+    'dialogs/choseDialog',
+    async (id, thunkAPI) => {
+        try {
+            return await dialogsAPI.getCurrentDialog(id).then((response) => {
+                return response.data
+            })
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err)
+        }
+    }
+)
 
 const dialogSlice = createSlice({
     name: 'dialogs',
@@ -74,8 +72,7 @@ const dialogSlice = createSlice({
 })
 
 function isError(action: AnyAction) {
-    return action.type.endsWith('rejected');
+    return action.type.endsWith('rejected')
 }
 
-export const {} = dialogSlice.actions
 export default dialogSlice.reducer

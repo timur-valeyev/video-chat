@@ -1,14 +1,13 @@
-import React from "react";
-import Message from "../Message";
-import {useAppSelector} from "../../hook";
-
+import React from 'react'
+import Message from '../Message'
+import { useAppSelector } from '../../hook'
 
 const Messages = () => {
-    const messages = useAppSelector(state => state.messages.currentDialog)
+    const messages = useAppSelector((state) => state.messages.currentDialog)
 
     return (
         <>
-            {messages.map((message) =>
+            {messages.map((message) => (
                 <Message
                     key={message.id}
                     avatar='https://cdn.freelance.ru/images/att/1575043_900_600.png'
@@ -17,7 +16,7 @@ const Messages = () => {
                     isTyping={false}
                     {...message}
                 />
-            )}
+            ))}
         </>
     )
 }

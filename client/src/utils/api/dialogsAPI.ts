@@ -1,6 +1,6 @@
-import {axios} from "../../core"
+import { axios } from '../../core'
 
-export default {
+export const dialogsAPI = {
     getAllDialogs: () => axios.get('dialogs'),
     getCurrentDialog: (id: number) => axios.get(`dialogs?id=${id}`)
 }
