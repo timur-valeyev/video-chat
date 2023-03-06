@@ -1,7 +1,7 @@
 import React from 'react';
-import {Form, Input, Select,} from 'antd';
+import {Button, Form, Input, Select,} from 'antd';
 import classes from './RegisterForm.module.scss'
-import Button from "../../ui/Button";
+import {useNavigate} from "react-router-dom";
 
 const {Option} = Select;
 const formItemLayout = {
@@ -22,25 +22,13 @@ const formItemLayout = {
         },
     },
 };
-const tailFormItemLayout = {
-    wrapperCol: {
-        xs: {
-            span: 24,
-            offset: 0,
-        },
-        sm: {
-            span: 16,
-            offset: 8,
-        },
-    },
-};
 
 
 const RegisterForm = () => {
     const [form] = Form.useForm();
-    // const onFinish = (values) => {
-    //     console.log('Received values of form: ', values);
-    // };
+    const navigate = useNavigate()
+
+    const goBack = () => navigate(-1)
 
     return (
         <div className={classes.container}>
@@ -48,11 +36,6 @@ const RegisterForm = () => {
                 {...formItemLayout}
                 form={form}
                 name="register"
-                // onFinish={onFinish}
-                initialValues={{
-                    residence: ['zhejiang', 'hangzhou', 'xihu'],
-                    prefix: '86',
-                }}
                 scrollToFirstError
             >
                 <Form.Item
@@ -198,7 +181,6 @@ const RegisterForm = () => {
                 >
                     <Input.Password/>
                 </Form.Item>
-
                 <Form.Item
                     name="phone"
                     label="Номер телефона"
@@ -216,12 +198,10 @@ const RegisterForm = () => {
                     />
                 </Form.Item>
 
-                <Form.Item {...tailFormItemLayout}>
-                    {/*<Button type="primary" htmlType="submit">Зарегистрироваться</Button>*/}
-                </Form.Item>
-                <Form.Item>
-                    Назад
-                </Form.Item>
+                <div className={classes.registerButtons}>
+                    <Button type="primary" htmlType="submit">Зарегистрироваться</Button>
+                    <Button onClick={goBack}>Отмена</Button>
+                </div>
             </Form>
         </div>
 
