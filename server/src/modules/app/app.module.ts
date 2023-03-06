@@ -7,9 +7,10 @@ import {SequelizeModule} from "@nestjs/sequelize";
 import config from "../../config";
 import {User} from "../users/models/user.model";
 import {AuthModule} from "../auth/auth.module";
+import {TokenModule} from "../token/token.module";
 
 @Module({
-  imports: [AuthModule, UsersModule,
+  imports: [TokenModule, AuthModule, UsersModule,
     ConfigModule.forRoot({
     isGlobal: true,
     load: [config]}),

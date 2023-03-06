@@ -27,4 +27,7 @@ export class AuthUserResponse {
 
     @IsString()
     phone: string
+
+    @IsString()
+    token: string
 }
