@@ -1,9 +1,9 @@
 import {Body, Controller, Post, UseGuards} from '@nestjs/common';
 import {AuthService} from "./auth.service";
-import {CreateUserDTO} from "../users/dto";
 import {UserLoginDTO} from "./dto";
 import {AuthUserResponse} from "./response";
 import {JwtAuthGuard} from "../../guards/jwt-guard";
+import {CreateUserDto} from "../users/dto/CreateUserDto";
 
 
 @Controller('auth')
@@ -11,7 +11,7 @@ export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
     @Post('register')
-    register(@Body() dto: CreateUserDTO): Promise<CreateUserDTO> {
+    register(@Body() dto: CreateUserDto): Promise<CreateUserDto> {
         return this.authService.registerUsers(dto)
     }
 
@@ -22,7 +22,7 @@ export class AuthController {
 
     @UseGuards(JwtAuthGuard)
     @Post('test')
-    test() {
+    testGuard() {
         return true
     }
 }
