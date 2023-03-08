@@ -19,3 +19,27 @@ export interface IMessage {
     text: string,
     user: any
 }
+
+export interface IAuthState {
+    user: {},
+    isLoggedIn: boolean,
+    loading: boolean,
+    error: null | boolean
+}
+
+export interface ILoginData {
+    email: string
+    password: string
+}
+
+export interface IRegisterData {
+    firstName: string
+    surName: string
+    lastName: string
+    role: string
+    department: string
+    group: string
+    email: string
+    password: string
+    phone: string
+}

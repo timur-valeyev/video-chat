@@ -1,6 +1,6 @@
 import {IsString} from "class-validator";
 
-export class AuthUserResponse {
+class UserResponse {
     @IsString()
     firstName: string
 
@@ -27,6 +27,10 @@ export class AuthUserResponse {
 
     @IsString()
     phone: string
+}
+
+export class AuthUserResponse {
+    user: UserResponse
 
     @IsString()
     token: string

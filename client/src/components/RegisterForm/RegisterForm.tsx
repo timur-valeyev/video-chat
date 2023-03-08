@@ -1,44 +1,60 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Form, Input, Select } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import { registerUser } from '../../redux/slices/authSlice'
+import { useAppDispatch } from '../../hook'
 import classes from './RegisterForm.module.scss'
 
 const { Option } = Select
-const formItemLayout = {
-    labelCol: {
-        xs: {
-            span: 24
-        },
-        sm: {
-            span: 8
-        }
-    },
-    wrapperCol: {
-        xs: {
-            span: 24
-        },
-        sm: {
-            span: 16
-        }
-    }
-}
 
 const RegisterForm = () => {
+    const [surName, setSurName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [role, setRole] = useState('')
+    const [department, setDepartment] = useState('')
+    const [group, setGroup] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [phone, setPhone] = useState('')
+
+    const dispatch = useAppDispatch()
     const [form] = Form.useForm()
     const navigate = useNavigate()
+
     const goBack = () => navigate(-1)
+
+    const handleSubmit = async () => {
+        try {
+            const userData = {
+                surName,
+                lastName,
+                firstName,
+                role,
+                department,
+                group,
+                email,
+                password,
+                phone
+            }
+            await dispatch(registerUser(userData))
+            // navigate('/im')
+        } catch (error) {
+            return error
+        }
+    }
 
     return (
         <div className={classes.container}>
             <Form
-                {...formItemLayout}
                 form={form}
                 name='register'
                 scrollToFirstError
+                onFinish={handleSubmit}
             >
                 <Form.Item
-                    name='surname'
-                    label='Фамилия'
+                    name='surName'
                     rules={[
                         {
                             required: true,
@@ -47,12 +63,14 @@ const RegisterForm = () => {
                         }
                     ]}
                 >
-                    <Input />
+                    <Input
+                        value={surName}
+                        onChange={(e) => setSurName(e.target.value)}
+                        placeholder='Введите фамилию'
+                    />
                 </Form.Item>
-
                 <Form.Item
                     name='firstname'
-                    label='Имя'
                     rules={[
                         {
                             required: true,
@@ -61,12 +79,14 @@ const RegisterForm = () => {
                         }
                     ]}
                 >
-                    <Input />
+                    <Input
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        placeholder='Введите имя'
+                    />
                 </Form.Item>
-
                 <Form.Item
                     name='lastname'
-                    label='Отчество'
                     rules={[
                         {
                             required: true,
@@ -75,12 +95,14 @@ const RegisterForm = () => {
                         }
                     ]}
                 >
-                    <Input />
+                    <Input
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        placeholder='Введите очество'
+                    />
                 </Form.Item>
-
                 <Form.Item
                     name='role'
-                    label='Роль'
                     rules={[
                         {
                             required: true,
@@ -88,15 +110,17 @@ const RegisterForm = () => {
                         }
                     ]}
                 >
-                    <Select placeholder='Выберите роль'>
-                        <Option value='teacher'>Преподаватель</Option>
-                        <Option value='student'>Студент</Option>
+                    <Select
+                        placeholder='Выберите роль'
+                        value={role}
+                        onChange={(value) => setRole(value)}
+                    >
+                        <Option value='Преподаватель'>Преподаватель</Option>
+                        <Option value='Студент'>Студент</Option>
                     </Select>
                 </Form.Item>
-
                 <Form.Item
-                    name='role'
-                    label='Кафедра'
+                    name='department'
                     rules={[
                         {
                             required: true,
@@ -104,17 +128,19 @@ const RegisterForm = () => {
                         }
                     ]}
                 >
-                    <Select placeholder='Выберите кафедру'>
-                        <Option value='0'>
+                    <Select
+                        placeholder='Выберите кафедру'
+                        value={department}
+                        onChange={(value) => setDepartment(value)}
+                    >
+                        <Option value='Информатика и вычислительная техника'>
                             Информатика и вычислительная техника
                         </Option>
                         <Option value='1'>Экономика</Option>
                     </Select>
                 </Form.Item>
-
                 <Form.Item
-                    name='role'
-                    label='Группа'
+                    name='group'
                     rules={[
                         {
                             required: true,
@@ -122,15 +148,17 @@ const RegisterForm = () => {
                         }
                     ]}
                 >
-                    <Select placeholder='Выберите группу'>
-                        <Option value='0'>ИВТ-2022</Option>
-                        <Option value='1'>Э-10-02</Option>
+                    <Select
+                        placeholder='Выберите группу'
+                        value={group}
+                        onChange={(value) => setGroup(value)}
+                    >
+                        <Option value='ИВТ-2022'>ИВТ-2022</Option>
+                        <Option value='Э-10-02'>Э-10-02</Option>
                     </Select>
                 </Form.Item>
-
                 <Form.Item
                     name='email'
-                    label='E-mail'
                     rules={[
                         {
                             type: 'email',
@@ -142,12 +170,14 @@ const RegisterForm = () => {
                         }
                     ]}
                 >
-                    <Input />
+                    <Input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder='Введите email'
+                    />
                 </Form.Item>
-
                 <Form.Item
                     name='password'
-                    label='Пароль'
                     rules={[
                         {
                             required: true,
@@ -156,12 +186,14 @@ const RegisterForm = () => {
                     ]}
                     hasFeedback
                 >
-                    <Input.Password />
+                    <Input.Password
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder='Введите пароль'
+                    />
                 </Form.Item>
-
                 <Form.Item
                     name='confirm'
-                    label='Подтвердить пароль'
                     dependencies={['password']}
                     hasFeedback
                     rules={[
@@ -184,11 +216,14 @@ const RegisterForm = () => {
                         })
                     ]}
                 >
-                    <Input.Password />
+                    <Input.Password
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder='Повторите пароль'
+                    />
                 </Form.Item>
                 <Form.Item
                     name='phone'
-                    label='Номер телефона'
                     rules={[
                         {
                             required: true,
@@ -197,9 +232,9 @@ const RegisterForm = () => {
                     ]}
                 >
                     <Input
-                        style={{
-                            width: '100%'
-                        }}
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder='Введите номер телефона'
                     />
                 </Form.Item>
 

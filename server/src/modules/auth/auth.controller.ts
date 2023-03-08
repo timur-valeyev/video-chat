@@ -11,7 +11,7 @@ export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
     @Post('register')
-    register(@Body() dto: CreateUserDto): Promise<CreateUserDto> {
+    register(@Body() dto: CreateUserDto): Promise<AuthUserResponse> {
         return this.authService.registerUsers(dto)
     }
 
