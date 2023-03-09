@@ -1,8 +1,7 @@
-import {Body, Controller, Delete, Patch, Req, UseGuards} from '@nestjs/common';
-import {UsersService} from "./users.service";
-import {JwtAuthGuard} from "../../guards/jwt-guard";
-import {UpdateUserDto} from "./dto/UpdateUserDto";
-
+import { Body, Controller, Delete, Patch, Req, UseGuards } from '@nestjs/common'
+import { UsersService } from './users.service'
+import { JwtAuthGuard } from '../../guards/jwt-guard'
+import { UpdateUserDto } from './dto/UpdateUserDto'
 
 @Controller('users')
 export class UsersController {
@@ -10,7 +9,10 @@ export class UsersController {
 
     @UseGuards(JwtAuthGuard)
     @Patch()
-    updateUser(@Body() updateDto: UpdateUserDto, @Req() request): Promise<UpdateUserDto> {
+    updateUser(
+        @Body() updateDto: UpdateUserDto,
+        @Req() request
+    ): Promise<UpdateUserDto> {
         const user = request.user
 
         return this.usersService.updateUser(user.email, updateDto)
