@@ -1,6 +1,7 @@
-.header {
-  background: white;
-  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
-  height: 50px;
-  border-bottom: 1px solid rgba(116, 101, 101, 0.5);
+.headerBlock {
+  display: flex;
+  gap: 20px;
+}
+.headerLink {
+  color: white;
 }

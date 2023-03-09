@@ -8,7 +8,6 @@ import classes from './Dialogs.module.scss'
 
 const Dialogs = () => {
     const dispatch = useAppDispatch()
-    const { loading, error } = useAppSelector((state) => state.dialogs)
     const dialogList = useAppSelector((state) => state.dialogs.dialogList)
 
     useEffect(() => {
@@ -25,8 +24,6 @@ const Dialogs = () => {
             <div className={classes.search}>
                 <Search placeholder='Поиск среди контактов' />
             </div>
-            {loading && <h2>Loading...</h2>}
-            {error && <h2>Error: {error} </h2>}
             {dialogList.map((item) => (
                 <Dialog
                     key={item.id}

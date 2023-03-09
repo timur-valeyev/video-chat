@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Input } from 'antd'
-import { AudioOutlined, CameraOutlined, SendOutlined } from '@ant-design/icons'
+import React, {useEffect, useRef, useState} from 'react'
+import {Input} from 'antd'
+import {AudioOutlined, CameraOutlined, SendOutlined} from '@ant-design/icons'
 
 //components
 import Dialogs from '../../components/Dialogs'
-import Header from '../../components/Header'
 import Messages from '../../components/Messages'
-import { useAppDispatch } from '../../hook'
-import { addMessage } from '../../redux/slices/messagesSlice'
+import {useAppDispatch} from '../../hook'
+import {addMessage} from '../../redux/slices/messagesSlice'
 import classes from './Home.module.scss'
 
 const Home = () => {
@@ -19,45 +18,50 @@ const Home = () => {
         if (inputRef.current) inputRef.current.focus()
     }, [])
 
-    const sendMessage = () => {
-        dispatch(addMessage(text))
-        setText('')
+    const sendMessage = (e: any) => {
+        e.preventDefault()
+        if (text) {
+            dispatch(addMessage(text))
+            setText('')
+        }
     }
 
-    const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (
-        event
-    ) => {
-        if (event.key === 'Enter') sendMessage()
+    const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+        if (e.key === 'Enter') {
+            sendMessage(e)
+        }
     }
 
     return (
-        <div className={classes.homeContainer}>
-            <Header />
-            <div className={classes.mess}>
-                <Dialogs />
-                <div className={classes.content}>
-                    <Messages />
-                    <div className={classes.message}>
-                        <div className={classes.input}>
-                            <Input
-                                ref={inputRef}
-                                value={text}
-                                placeholder='Введите сообщение'
-                                onChange={(event) =>
-                                    setText(event.target.value)
-                                }
-                                onKeyDown={handleKeyDown}
-                            />
-                        </div>
-                        <div className={classes.icons}>
-                            <CameraOutlined />
-                            <AudioOutlined />
-                            <SendOutlined onClick={sendMessage} />
-                        </div>
-                    </div>
+        <>
+            <aside className={classes.chatAside}>
+                <Dialogs/>
+            </aside>
+            <main className={classes.chatMain}>
+                <div className={classes.chatMessage}>
+                    <Messages/>
                 </div>
-            </div>
-        </div>
+                <div className={classes.chatInput}>
+                    <form>
+                        <Input
+                            type='text'
+                            ref={inputRef}
+                            value={text}
+                            placeholder='Введите сообщение'
+                            onChange={(event) =>
+                                setText(event.target.value)
+                            }
+                            onKeyDown={handleKeyDown}
+                        />
+                        <div className={classes.icons}>
+                            <CameraOutlined/>
+                            <AudioOutlined/>
+                            <SendOutlined onClick={sendMessage}/>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </>
     )
 }
 
