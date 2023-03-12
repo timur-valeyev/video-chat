@@ -7,6 +7,7 @@ import { Message } from './models/messages.model'
 @Module({
     imports: [SequelizeModule.forFeature([Message])],
     controllers: [MessagesController],
-    providers: [MessagesService]
+    providers: [MessagesService],
+    exports: [MessagesService]
 })
 export class MessagesModule {}

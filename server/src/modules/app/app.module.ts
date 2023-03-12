@@ -14,9 +14,11 @@ import { MessagesModule } from '../messages/messages.module'
 import { Message } from '../messages/models/messages.model'
 import { ChatModule } from '../chat/chat.module'
 import { Chat } from '../chat/models/chat.model'
+import { SocketModule } from '../../chat/socket.module'
 
 @Module({
     imports: [
+        SocketModule,
         ChatModule,
         MessagesModule,
         DialogsModule,

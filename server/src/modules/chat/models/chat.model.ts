@@ -4,7 +4,7 @@ import {
     Model,
     Table,
     BelongsTo,
-    ForeignKey, DataType
+    ForeignKey
 } from 'sequelize-typescript'
 import { User } from '../../users/models/user.model'
 import { Message } from '../../messages/models/messages.model'
