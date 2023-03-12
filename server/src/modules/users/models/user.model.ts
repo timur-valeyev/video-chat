@@ -1,6 +1,5 @@
 import { Column, HasMany, Model, Table } from 'sequelize-typescript'
-import { Dialog } from '../../dialog/models/dialogs.model'
-// import {Message} from '../../dialogs/dialogs/models/dialogs.model'
+import { Message } from '../../messages/models/messages.model'
 
 @Table
 export class User extends Model {
@@ -31,12 +30,6 @@ export class User extends Model {
     @Column
     phone: string
 
-    @HasMany(() => Dialog, {
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-    })
-    dialogs: Dialog[]
-
-    // @HasMany(() => Message)
-    // messages: Message[];
+    @HasMany(() => Message)
+    messages: Message[];
 }

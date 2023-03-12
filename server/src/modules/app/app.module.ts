@@ -8,13 +8,16 @@ import config from '../../config'
 import { User } from '../users/models/user.model'
 import { AuthModule } from '../auth/auth.module'
 import { TokenModule } from '../token/token.module'
-import { Dialog } from '../dialog/models/dialogs.model'
-import { DialogsModule } from '../dialog/dialogs.module'
+import { Dialog } from '../dialogs/models/dialogs.model'
+import { DialogsModule } from '../dialogs/dialogs.module'
 import { MessagesModule } from '../messages/messages.module'
 import { Message } from '../messages/models/messages.model'
+import { ChatModule } from '../chat/chat.module'
+import { Chat } from '../chat/models/chat.model'
 
 @Module({
     imports: [
+        ChatModule,
         MessagesModule,
         DialogsModule,
         TokenModule,
@@ -36,7 +39,7 @@ import { Message } from '../messages/models/messages.model'
                 password: configService.get('db_password'),
                 synchronize: true,
                 autoLoadModels: true,
-                models: [User, Dialog, Message]
+                models: [User, Dialog, Message, Chat]
             })
         })
     ],

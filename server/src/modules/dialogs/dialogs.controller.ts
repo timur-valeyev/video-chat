@@ -9,8 +9,7 @@ export class DialogsController {
 
     @UseGuards(JwtAuthGuard)
     @Post('create')
-    createAsset(@Body() assetDto: DialogsDto, @Req() request) {
-        const user = request.user
-        return this.dialogService.createAsset(user, assetDto)
+    createAsset(@Body() dto: DialogsDto, @Req() request) {
+        return this.dialogService.createAsset(dto)
     }
 }

@@ -1,9 +1,16 @@
-import { IsString } from 'class-validator'
+import { IsNumber, IsString } from 'class-validator'
+
 
 export class MessagesDto {
-    @IsString()
-    name: string
+    @IsNumber()
+    userId: number;
+
+    @IsNumber()
+    chatId: number;
+
+    @IsNumber()
+    dialogId: number;
 
     @IsString()
-    assetId: string
+    text: string;
 }

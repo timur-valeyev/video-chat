@@ -6,24 +6,32 @@ import {
     ForeignKey
 } from 'sequelize-typescript'
 import { User } from '../../users/models/user.model'
-import { Dialog } from '../../dialog/models/dialogs.model'
+import { Dialog } from '../../dialogs/models/dialogs.model'
+import { Chat } from '../../chat/models/chat.model'
 
 @Table
 export class Message extends Model<Message> {
-    @Column
-    content: string
-
     @ForeignKey(() => User)
     @Column
-    authorId: string
+    userId: number;
 
-    // @BelongsTo(() => User)
-    // user: User;
+    @BelongsTo(() => User)
+    user: User;
 
-    // @ForeignKey(() => Dialog)
-    // @Column
-    // dialogId: string;
-    //
-    // @BelongsTo(() => Dialog)
-    // dialog: Dialog;
+    @ForeignKey(() => Chat)
+    @Column
+    chatId: number;
+
+    @BelongsTo(() => Chat)
+    chat: Chat;
+
+    @ForeignKey(() => Dialog)
+    @Column
+    dialogId: number;
+
+    @BelongsTo(() => Dialog)
+    dialog: Dialog;
+
+    @Column
+    text: string;
 }

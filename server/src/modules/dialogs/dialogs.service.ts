@@ -8,15 +8,9 @@ export class DialogsService {
         @InjectModel(Dialog) private readonly dialogRepository: typeof Dialog
     ) {}
 
-    async createAsset(user, dto) {
+    async createAsset(dto) {
         try {
-            console.log(user)
-            const dialog = {
-                user: user.id,
-                name: dto.name,
-                assetId: dto.assetId
-            }
-            await this.dialogRepository.create(dialog)
+            const dialog = await this.dialogRepository.create(dto)
             return dialog
         } catch (e) {
             throw new Error(e)

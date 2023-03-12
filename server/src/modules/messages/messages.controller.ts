@@ -3,14 +3,15 @@ import { JwtAuthGuard } from '../../guards/jwt-guard'
 import { MessagesService } from './messages.service'
 import { MessagesDto } from './dto/MessagesDto'
 
-@Controller('dialogs')
+@Controller('messages')
 export class MessagesController {
     constructor(private readonly messagesService: MessagesService) {}
 
-    @UseGuards(JwtAuthGuard)
+    // @UseGuards(JwtAuthGuard)
     @Post('create')
     createAsset(@Body() assetDto: MessagesDto, @Req() request) {
-        const user = request.user
-        return this.messagesService.createAsset(user, assetDto)
+
+        return this.messagesService.createAsset(assetDto)
     }
+
 }

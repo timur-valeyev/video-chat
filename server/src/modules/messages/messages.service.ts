@@ -8,14 +8,9 @@ export class MessagesService {
         @InjectModel(Message) private readonly messageRepository: typeof Message
     ) {}
 
-    async createAsset(user, dto) {
+    async createAsset(dto) {
         try {
-            const message = {
-                user: user.id,
-                name: dto.name,
-                assetId: dto.assetId
-            }
-            await this.messageRepository.create(message)
+            const message = await this.messageRepository.create(dto)
             return message
         } catch (e) {
             throw new Error(e)
