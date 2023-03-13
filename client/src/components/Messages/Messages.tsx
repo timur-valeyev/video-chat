@@ -4,7 +4,7 @@ import { useAppSelector } from '../../hook'
 
 const Messages = () => {
     const messages = useAppSelector((state) => state.messages.currentDialog)
-
+    console.log(messages)
     return (
         <>
             {messages.map((message) => (

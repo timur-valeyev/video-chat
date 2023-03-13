@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk, AnyAction } from '@reduxjs/toolkit'
 import { ICurrentDialog } from '../../types/data'
-import { messagesAPI } from '../../utils/api/messagesAPI'
+
+import io from 'socket.io-client'
+import { instance } from '../../utils/axios/instance'
+
+export const socket = io('http://localhost:8888/chat')
 
 interface MessagesListState {
     currentDialog: ICurrentDialog[]
@@ -14,11 +18,12 @@ const initialState: MessagesListState = {
     error: null
 }
 
-export const fetchMessages = createAsyncThunk<ICurrentDialog[], number>(
+export const fetchMessages = createAsyncThunk(
     'messages/fetchMessages',
-    async (id, thunkAPI) => {
+    async (_, thunkAPI) => {
         try {
-            return await messagesAPI.getAllMessages(id).then((response) => {
+            return await instance.get('messages/get-all-messages').then((response) => {
+                console.log(response)
                 return response.data
             })
         } catch (err) {
@@ -31,8 +36,13 @@ export const addMessage = createAsyncThunk<ICurrentDialog, string>(
     'messages/addMessage',
     async (text, thunkAPI) => {
         try {
-            return await messagesAPI.addMessage(text).then((response) => {
-                return response.data
+            return new Promise((resolve, reject) => {
+                socket.on('message', (message) => {
+                    resolve(message)
+                })
+                socket.on('error', (error) => {
+                    reject(error)
+                })
             })
         } catch (err) {
             return thunkAPI.rejectWithValue(err)
@@ -58,6 +68,7 @@ const messagesSlice = createSlice({
                 state.error = null
             })
             .addCase(addMessage.fulfilled, (state, action) => {
+                console.log(action.payload)
                 state.currentDialog.push(action.payload)
             })
             .addMatcher(isError, (state, action) => {

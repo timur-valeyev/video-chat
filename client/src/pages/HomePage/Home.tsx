@@ -1,17 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {Input} from 'antd'
-import {AudioOutlined, CameraOutlined, SendOutlined} from '@ant-design/icons'
+import React, { useEffect, useRef, useState } from 'react'
+import { Input } from 'antd'
+import { AudioOutlined, CameraOutlined, SendOutlined } from '@ant-design/icons'
 
 //components
 import Dialogs from '../../components/Dialogs'
 import Messages from '../../components/Messages'
-import {useAppDispatch} from '../../hook'
-import {addMessage} from '../../redux/slices/messagesSlice'
+import { socket } from '../../redux/slices/messagesSlice'
 import classes from './Home.module.scss'
 
 const Home = () => {
     const [text, setText] = useState('')
-    const dispatch = useAppDispatch()
     const inputRef = useRef<any>(null)
 
     useEffect(() => {
@@ -21,7 +19,7 @@ const Home = () => {
     const sendMessage = (e: any) => {
         e.preventDefault()
         if (text) {
-            dispatch(addMessage(text))
+            socket.emit('message', { text })
             setText('')
         }
     }
@@ -35,11 +33,11 @@ const Home = () => {
     return (
         <>
             <aside className={classes.chatAside}>
-                <Dialogs/>
+                <Dialogs />
             </aside>
             <main className={classes.chatMain}>
                 <div className={classes.chatMessage}>
-                    <Messages/>
+                    <Messages />
                 </div>
                 <div className={classes.chatInput}>
                     <form>
@@ -54,9 +52,9 @@ const Home = () => {
                             onKeyDown={handleKeyDown}
                         />
                         <div className={classes.icons}>
-                            <CameraOutlined/>
-                            <AudioOutlined/>
-                            <SendOutlined onClick={sendMessage}/>
+                            <CameraOutlined />
+                            <AudioOutlined />
+                            <SendOutlined onClick={sendMessage} />
                         </div>
                     </form>
                 </div>

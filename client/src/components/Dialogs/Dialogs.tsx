@@ -16,7 +16,7 @@ const Dialogs = () => {
 
     const onSelectDialog = (id: number) => {
         dispatch(choseDialog(id))
-        dispatch(fetchMessages(id))
+        dispatch(fetchMessages())
     }
 
     return (

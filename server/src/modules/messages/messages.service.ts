@@ -16,4 +16,7 @@ export class MessagesService {
             throw new Error(e)
         }
     }
+    async findAll(): Promise<Message[]> {
+        return this.messageRepository.findAll();
+    }
 }
